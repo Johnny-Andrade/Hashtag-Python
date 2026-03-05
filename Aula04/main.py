@@ -1,5 +1,6 @@
 # Passo a passo
 
+# Título
 # Input do chat
     # Mostrar a mensagem que o usuario enviou
     # Pegar a pergunta e enviar para a IA
@@ -13,3 +14,6 @@
 # pip install openai streamlit
 
 import streamlit as st
+
+st.write("Danonebot com IA")
+st.write("Teste de Python")
