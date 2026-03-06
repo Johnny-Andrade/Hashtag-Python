@@ -36,10 +36,15 @@ if texto_usuario: #Se houver algum texto do usuario (para nao ficar enviando Non
     mensagem_usuario = {"role": "user", "content": texto_usuario}
     st.session_state["lista_mensagens"].append(mensagem_usuario)
 
-    resposta_ia = "Você me perguntou: " + texto_usuario
+    resposta_ia = modelo_ia.chat.completions.create(
+        messages=st.session_state["lista_mensagens"],
+        model="gpt-4o"
+    )
 
-    st.chat_message("assistant").write(resposta_ia)
-    mensagem_ia = {"role": "assistant", "content": resposta_ia}
+    texto_resposta_ia = resposta_ia.choices[0].message.content
+
+    st.chat_message("assistant").write(texto_resposta_ia)
+    mensagem_ia = {"role": "assistant", "content": texto_resposta_ia}
     st.session_state["lista_mensagens"].append(mensagem_ia)
 
 print(st.session_state["lista_mensagens"])
